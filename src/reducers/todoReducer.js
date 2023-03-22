@@ -38,6 +38,54 @@ const initState = {
         coffee: 0,
       },
     },
+    {
+      id: 4,
+      content: "Join meetup event",
+      weight: 3,
+      reactions: {
+        thumbsUp: 0,
+        wow: 0,
+        heart: 0,
+        rocket: 0,
+        coffee: 0,
+      },
+    },
+    {
+      id: 5,
+      content: "Join meetup event",
+      weight: 3,
+      reactions: {
+        thumbsUp: 0,
+        wow: 0,
+        heart: 0,
+        rocket: 0,
+        coffee: 0,
+      },
+    },
+    {
+      id: 6,
+      content: "Join meetup event",
+      weight: 3,
+      reactions: {
+        thumbsUp: 0,
+        wow: 0,
+        heart: 0,
+        rocket: 0,
+        coffee: 0,
+      },
+    },
+    {
+      id: 7,
+      content: "Join meetup event",
+      weight: 3,
+      reactions: {
+        thumbsUp: 0,
+        wow: 0,
+        heart: 0,
+        rocket: 0,
+        coffee: 0,
+      },
+    },
   ],
 };
 const todoReducer = (state = initState, action) => {
@@ -50,7 +98,7 @@ const todoReducer = (state = initState, action) => {
     case "REMOVE_TODO":
       return {
         ...state,
-        todoList: action.payload,
+        todoList:state.todoList.filter(todo=> todo.id !== action.payload)
       };
     case "REACTION_ADDED":
       return {
