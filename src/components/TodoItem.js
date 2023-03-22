@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import ReactionButtons from "./ReactionButtons";
 
 //Single todo item component
 const TodoItem = (props) => {
@@ -22,6 +23,7 @@ const TodoItem = (props) => {
       >
         <i className="remove-btn material-icons blue-text">clear</i>
       </span>
+      <div><ReactionButtons item={props.item}/></div>
     </li>
   );
 };

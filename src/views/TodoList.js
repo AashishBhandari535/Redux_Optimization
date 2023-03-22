@@ -5,6 +5,7 @@ import { getTodosSelector,getTodosWithLetter } from "../reducers/todoReducer";
 
 const TodoList = () => {
   const todoList = useSelector(state=>getTodosWithLetter(state,'j'));
+  // const todoList = useSelector(getTodosSelector)
   const dispatch = useDispatch();
 
   const [inputTodo, setInputTodo] = useState("");

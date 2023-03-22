@@ -6,16 +6,37 @@ const initState = {
       id: 1,
       content: "Play video game",
       weight: 1,
+      reactions: {
+        thumbsUp: 0,
+        wow: 0,
+        heart: 0,
+        rocket: 0,
+        coffee: 0,
+      },
     },
     {
       id: 2,
       content: "Learn nodejs & python",
       weight: 2,
+      reactions: {
+        thumbsUp: 0,
+        wow: 0,
+        heart: 0,
+        rocket: 0,
+        coffee: 0,
+      },
     },
     {
       id: 3,
       content: "Join meetup event",
       weight: 3,
+      reactions: {
+        thumbsUp: 0,
+        wow: 0,
+        heart: 0,
+        rocket: 0,
+        coffee: 0,
+      },
     },
   ],
 };
@@ -31,21 +52,37 @@ const todoReducer = (state = initState, action) => {
         ...state,
         todoList: action.payload,
       };
+    case "REACTION_ADDED":
+      return {
+        ...state,
+        todoList:state.todoList.map(todo => {
+          if(todo.id !== action.payload.id) {
+            return todo
+          }
+          return {
+            ...todo,
+            reactions: {
+              ...todo.reactions,
+              [action.payload.name]: action.payload.value,
+            },
+          };
+        })
+      }
     default:
       return state;
   }
 };
-export const getTodosSelector = state => state.todos.todoList
+export const getTodosSelector = (state) => state.todos.todoList;
 
 export const getTodosWithLetter = createSelector(
   getTodosSelector,
   (state, Letter) => Letter,
   (todos, Letter) => {
-    console.log('hello')
-    return todos.filter((todo) => todo.content.includes(Letter))
+    console.log("hello");
+    console.log(todos)
+    return todos.filter((todo) => todo.content.includes(Letter));
   }
 );
 //createSelector returns a callback function where arguments are inputs
-
 
 export default todoReducer;
