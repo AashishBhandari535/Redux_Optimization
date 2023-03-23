@@ -6,8 +6,9 @@ import ReactionButtons from "./ReactionButtons";
 let TodoItem = ({item}) => {
   const dispatch = useDispatch();
   const {id} = item
+  console.log(item)
+  console.log("---------------")
   const removeTodoItem = () => {
-    console.log(id)
     dispatch({ type: "REMOVE_TODO", payload: id });
   };
 
@@ -26,6 +27,9 @@ let TodoItem = ({item}) => {
     </li>
   );
 };
+function todoItemPropsEqual(prevProps, nextProps) {
+  console.log(prevProps.item === nextProps.item);
+}
 
-TodoItem = React.memo(TodoItem);
+TodoItem = React.memo(TodoItem,todoItemPropsEqual);
 export default TodoItem;
