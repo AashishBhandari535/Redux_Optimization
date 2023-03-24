@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import TodoItem from "../components/TodoItem";
-import { getTodosSelector,getTodosWithLetter } from "../reducers/todoReducer";
+import { getTodosSelector, getTodosWithLetter } from "../reducers/todoReducer";
 
 const TodoList = () => {
   // const todoList = useSelector(state=>getTodosWithLetter(state,'j'));
-  const todoList = useSelector(getTodosSelector)
+  const todoList = useSelector(getTodosSelector);
   const dispatch = useDispatch();
-
+const [content,setContent] = useState('hello')
   const [inputTodo, setInputTodo] = useState("");
 
   const handleInput = (e) => {
@@ -21,18 +21,19 @@ const TodoList = () => {
       content: inputTodo,
       weight: Math.random(),
     };
-    console.log(newTodoObject)
     //Add new todo item into List with the action
     dispatch({ type: "ADD_TODO", payload: newTodoObject });
     setInputTodo("");
   };
-      function returnBlankNodes() {
-        let nodes = [];
-        for (let i = 0; i < 10000; i++) {
-          nodes.push(<p></p>);
-        }
-        return nodes;
-      }
+  function returnBlankNodes(content) {
+    let nodes = [];
+    for (let i = 0; i < 10000; i++) {
+      console.log(content);
+      nodes.push(<p></p>);
+    }
+    return nodes;
+  }
+  const returnBlankedNodes = useMemo(() =>returnBlankNodes(content),[content])
 
   return (
     <section id="section-todo">
@@ -66,8 +67,11 @@ const TodoList = () => {
           Add
         </button>
       </div>
-      {returnBlankNodes()}
+      {/* {returnBlankNodes()} */}
+      {returnBlankedNodes}
+      <input type="text" value={content} onChange={e=>setContent(e.target.value)}/>
     </section>
   );
 };
 export default TodoList;
+
